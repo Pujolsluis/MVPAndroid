@@ -3,6 +3,8 @@ package com.example.devs.mvplogin.data;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.util.Objects;
+
 /**
  * Immutable model class for a new User
  */
@@ -45,5 +47,25 @@ public class User {
     @Nullable
     public String getmLastName() {
         return mLastName;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        User user = (User) obj;
+        return Objects.equals(mEmail, user.mEmail) &&
+                Objects.equals(mFirstName, user.mFirstName) &&
+                Objects.equals(mLastName, user.mLastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(mEmail);
+    }
+
+    @Override
+    public String toString() {
+        return "User: " + mEmail + " - " + mFirstName + " " + mLastName;
     }
 }
