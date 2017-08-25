@@ -1,9 +1,11 @@
-package com.example.devs.mvplogin;
+package com.example.devs.mvplogin.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.devs.mvplogin.R;
+
+public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
