@@ -27,7 +27,7 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public LoginFragment newInstance(){
+    public static LoginFragment newInstance(){
 
         LoginFragment loginFragment = new LoginFragment();
 
