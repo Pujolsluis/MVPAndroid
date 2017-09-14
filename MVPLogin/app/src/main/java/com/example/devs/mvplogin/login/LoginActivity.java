@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
 
-public class LoginActivity extends AppCompatActivity implements LoginFragment.onLoginButtonClickListener {
+public class LoginActivity extends AppCompatActivity implements LoginFragment.onLoginButtonClickListener, LoginFragment.onSignupClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +23,10 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.on
     @Override
     public void onLoginClicked() {
         Toast.makeText(this, "You have logged in succesfully", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSignupClicked() {
+        Toast.makeText(this, "You have requested the signup fragment", Toast.LENGTH_SHORT).show();
     }
 }

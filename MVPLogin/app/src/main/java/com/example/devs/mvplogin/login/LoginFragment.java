@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
@@ -18,10 +19,12 @@ import static com.example.devs.mvplogin.R.layout.fragment_login;
 
 public class LoginFragment extends Fragment {
 
-    onLoginButtonClickListener mCallback;
+    onLoginButtonClickListener mLoginCallback;
+    onSignupClickListener mSignupCallback;
     EditText email;
     EditText password;
     Button loginButton;
+    TextView signupTextView;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -42,7 +45,7 @@ public class LoginFragment extends Fragment {
         email = rootView.findViewById(R.id.login_email_textView);
         password = rootView.findViewById(R.id.login_password_textView);
         loginButton = rootView.findViewById(R.id.login_buttonView);
-
+        signupTextView = rootView.findViewById(R.id.login_signup_TextView);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,9 +53,16 @@ public class LoginFragment extends Fragment {
                 if(TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
                     Toast.makeText(getContext(), "You must complete all fields", Toast.LENGTH_SHORT).show();
                 }else{
-                    mCallback.onLoginClicked();
+                    mLoginCallback.onLoginClicked();
                 }
 
+            }
+        });
+
+        signupTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSignupCallback.onSignupClicked();
             }
         });
 
@@ -64,23 +74,33 @@ public class LoginFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
 
+        //Get Login callback activity
         try {
-
-            mCallback = (onLoginButtonClickListener) context;
-
+            mLoginCallback = (onLoginButtonClickListener) context;
         }catch (ClassCastException e){
-
             throw new ClassCastException(context.toString()
                     + " must implement onLoginButtonClickListener"
             );
+        }
 
+        //Get Signup callback activity
+        try{
+            mSignupCallback = (onSignupClickListener) context;
+        }catch (ClassCastException e){
+            throw new ClassCastException(context.toString()
+                    + "must implement onSignupClickListener"
+            );
         }
 
         super.onAttach(context);
     }
 
     public interface onLoginButtonClickListener{
-            void onLoginClicked();
+        void onLoginClicked();
+    }
+
+    public interface onSignupClickListener{
+        void onSignupClicked();
     }
 
 }
