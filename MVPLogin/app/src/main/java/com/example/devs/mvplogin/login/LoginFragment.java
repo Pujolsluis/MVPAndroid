@@ -17,7 +17,7 @@ import com.example.devs.mvplogin.R;
 
 import static com.example.devs.mvplogin.R.layout.fragment_login;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements LoginContract.View {
 
     onLoginButtonClickListener mLoginCallback;
     onSignupClickListener mSignupCallback;
@@ -95,12 +95,19 @@ public class LoginFragment extends Fragment {
         super.onAttach(context);
     }
 
-    public interface onLoginButtonClickListener{
-        void onLoginClicked();
+
+    @Override
+    public void setPresenter(LoginContract.Presenter presenter) {
+
     }
 
-    public interface onSignupClickListener{
-        void onSignupClicked();
+    @Override
+    public void setLoadingIndicator(boolean active) {
+
     }
 
+    @Override
+    public void showLoginError() {
+        
+    }
 }

@@ -1,11 +1,11 @@
 package com.example.devs.mvplogin.login;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
+import com.example.devs.mvplogin.util.ActivityUtils;
 
 public class LoginActivity extends AppCompatActivity implements LoginFragment.onLoginButtonClickListener, LoginFragment.onSignupClickListener {
 
@@ -24,13 +24,17 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.on
 
             loginFragment = LoginFragment.newInstance();
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//
+//            fragmentManager.beginTransaction()
+//                    .add(R.id.mainActivity_fragment, loginFragment)
+//                    .commit();
 
-            fragmentManager.beginTransaction()
-                    .add(R.id.mainActivity_fragment, loginFragment)
-                    .commit();
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
+                    loginFragment, R.id.mainActivity_fragment);
 
         }
+
 
 
 
