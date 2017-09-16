@@ -41,7 +41,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(fragment_login, container);
+        View rootView = inflater.inflate(fragment_login, container, false);
         email = rootView.findViewById(R.id.login_email_textView);
         password = rootView.findViewById(R.id.login_password_textView);
         loginButton = rootView.findViewById(R.id.login_buttonView);
