@@ -19,6 +19,7 @@ import static com.example.devs.mvplogin.R.layout.fragment_login;
 
 public class LoginFragment extends Fragment implements LoginContract.View {
 
+    LoginContract.Presenter mPresenter;
     onLoginButtonClickListener mLoginCallback;
     onSignupClickListener mSignupCallback;
     EditText email;
@@ -40,6 +41,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
 
         View rootView = inflater.inflate(fragment_login, container, false);
         email = rootView.findViewById(R.id.login_email_textView);
@@ -98,7 +100,11 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     @Override
     public void setPresenter(LoginContract.Presenter presenter) {
+            if(presenter != null){
 
+            }else{
+                mPresenter = presenter;
+            }
     }
 
     @Override

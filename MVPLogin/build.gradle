@@ -21,3 +21,14 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+
+
+    appCompatVersion = '26.+'
+    constraintLayoutVersion = '1.0.2'
+    supportLibraryVersion = '26.+'
+    designSupportLibraryVersion = '26.+'
+    guavaVersion = '18.0'
+    junitVersion = '4.12'
+}
