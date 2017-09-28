@@ -2,7 +2,7 @@ package com.example.devs.mvplogin.autentication.login;
 
 import android.support.annotation.NonNull;
 
-import com.example.devs.mvplogin.data.User;
+import com.example.devs.mvplogin.data.UserProfile;
 import com.example.devs.mvplogin.data.source.UserRepository;
 
 
@@ -35,7 +35,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void login(User user) {
+    public void login(UserProfile userProfile) {
 
     }
 }

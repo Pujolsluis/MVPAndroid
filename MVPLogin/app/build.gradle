@@ -30,4 +30,9 @@ dependencies {
     compile "com.android.support:design:$rootProject.designSupportLibraryVersion"
     compile "com.google.guava:guava:$rootProject.guavaVersion"
     testCompile "junit:junit:$rootProject.junitVersion"
+    //compile "com.google.firebase:firebase-database:$rootProject.firebaseDatabaseVersion"
+    compile 'com.google.firebase:firebase-database:10.0.1'
 }
+
+
+apply plugin: 'com.google.gms.google-services'

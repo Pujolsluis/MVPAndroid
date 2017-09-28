@@ -2,7 +2,7 @@ package com.example.devs.mvplogin.autentication.login;
 
 import com.example.devs.mvplogin.BasePresenter;
 import com.example.devs.mvplogin.BaseView;
-import com.example.devs.mvplogin.data.User;
+import com.example.devs.mvplogin.data.UserProfile;
 
 /**
  * Created by devs on 8/25/17.
@@ -27,7 +27,7 @@ public interface LoginContract {
 
     interface Presenter extends BasePresenter {
 
-        void login(User user);
+        void login(UserProfile userProfile);
 
     }
 

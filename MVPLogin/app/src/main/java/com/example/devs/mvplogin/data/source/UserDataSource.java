@@ -2,7 +2,7 @@ package com.example.devs.mvplogin.data.source;
 
 import android.support.annotation.NonNull;
 
-import com.example.devs.mvplogin.data.User;
+import com.example.devs.mvplogin.data.UserProfile;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ public interface UserDataSource {
 
     interface LoadUsersDataCallBack{
 
-        void onUserDataloaded(List<User> users);
+        void onUserDataloaded(List<UserProfile> userProfiles);
 
         void onDataNotAvailable();
     }
 
     interface GetUserCallback{
 
-        void onUserLoaded(User user);
+        void onUserLoaded(UserProfile userProfile);
 
         void onDataNotAvailable();
     }
@@ -30,11 +30,11 @@ public interface UserDataSource {
 
     void getUser(@NonNull String userEmail, @NonNull GetUserCallback callback);
 
-    void saveUser(@NonNull User user);
+    void saveUser(@NonNull UserProfile userProfile);
 
-    void updateUser(@NonNull User user);
+    void updateUser(@NonNull UserProfile userProfile);
 
-    void deleteUser(@NonNull User user);
+    void deleteUser(@NonNull UserProfile userProfile);
 
     void deleteAllUsers();
 
