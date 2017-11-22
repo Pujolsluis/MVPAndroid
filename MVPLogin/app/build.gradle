@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.example.devs.mvplogin"
         minSdkVersion 19
@@ -32,6 +32,8 @@ dependencies {
     testCompile "junit:junit:$rootProject.junitVersion"
     //compile "com.google.firebase:firebase-database:$rootProject.firebaseDatabaseVersion"
     compile 'com.google.firebase:firebase-database:10.0.1'
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
 }
 
 
