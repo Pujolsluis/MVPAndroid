@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.example.devs.mvplogin.R.layout.fragment_login;
 
 public class LoginFragment extends Fragment implements LoginContract.View {
@@ -22,9 +25,17 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     LoginContract.Presenter mPresenter;
     onLoginButtonClickListener mLoginCallback;
     onSignupClickListener mSignupCallback;
+
+    @BindView(R.id.login_email_textView)
     EditText email;
+
+    @BindView(R.id.login_password_textView)
     EditText password;
+
+    @BindView(R.id.login_buttonView)
     Button loginButton;
+
+    @BindView(R.id.login_signup_TextView)
     TextView signupTextView;
 
     public LoginFragment() {
@@ -42,29 +53,24 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
         View rootView = inflater.inflate(fragment_login, container, false);
-        email = rootView.findViewById(R.id.login_email_textView);
-        password = rootView.findViewById(R.id.login_password_textView);
-        loginButton = rootView.findViewById(R.id.login_buttonView);
-        signupTextView = rootView.findViewById(R.id.login_signup_TextView);
+        ButterKnife.bind(this, rootView);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
-                    Toast.makeText(getContext(), "You must complete all fields", Toast.LENGTH_SHORT).show();
-                }else{
-                    mLoginCallback.onLoginClicked();
-                }
-
+            if(TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
+                Toast.makeText(getContext(), "You must complete all fields", Toast.LENGTH_SHORT).show();
+            }else{
+                mLoginCallback.onLoginClicked();
+            }
             }
         });
 
         signupTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mSignupCallback.onSignupClicked();
+            mSignupCallback.onSignupClicked();
             }
         });
 
@@ -100,15 +106,15 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     @Override
     public void setPresenter(LoginContract.Presenter presenter) {
-            if(presenter != null){
+        if(presenter != null){
 
-            }else{
-                mPresenter = presenter;
-            }
+        }else{
+            mPresenter = presenter;
+        }
     }
 
     @Override
-    public void setLoadingIndicator(boolean active) {
+    public void setLoadingIndicator(boolean isActive) {
 
     }
 
