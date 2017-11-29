@@ -44,7 +44,7 @@ public class AuthenticationActivity extends AppCompatActivity implements LoginCo
 
     @Override
     public void onLoginClicked() {
-        Toast.makeText(this, "You have logged in succesfully", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

@@ -10,10 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +41,9 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     @BindView(R.id.login_signup_TextView)
     TextView signupTextView;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -115,7 +122,8 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     @Override
     public void setLoadingIndicator(boolean isActive) {
-
+        if(isActive) progressBar.setVisibility(View.VISIBLE);
+        else progressBar.setVisibility(View.GONE);
     }
 
     @Override
