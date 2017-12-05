@@ -12,7 +12,7 @@ import com.example.devs.mvplogin.ui.login.LoginContract;
 public interface SignUpContract {
 
     interface View extends BaseView<SignUpContract.Presenter> {
-        void showSignUpMessage();
+        void showSignUpMessage(String message);
 
         public interface onSignupButtonClickListener{
             void onSignupButtonClicked();

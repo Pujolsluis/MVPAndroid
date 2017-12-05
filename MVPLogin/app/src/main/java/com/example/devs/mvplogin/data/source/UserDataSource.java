@@ -26,6 +26,15 @@ public interface UserDataSource {
         void onDataNotAvailable();
     }
 
+    interface SignUpUserCallBack{
+        void onUserSignedUp();
+
+        void onUserNotSignedUp();
+    }
+
+    void signUpUser(@NonNull UserProfile userProfile, @NonNull String password,
+                    @NonNull SignUpUserCallBack callBack);
+
     void loginUser(@NonNull String username, @NonNull String password);
 
     void getUsers(@NonNull LoadUsersDataCallBack callback);

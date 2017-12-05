@@ -141,8 +141,8 @@ public class SignUpFragment extends Fragment implements SignUpContract.View {
     }
 
     @Override
-    public void showSignUpMessage() {
-        Toast.makeText(getContext(), "We signing up :D", Toast.LENGTH_SHORT).show();
+    public void showSignUpMessage(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

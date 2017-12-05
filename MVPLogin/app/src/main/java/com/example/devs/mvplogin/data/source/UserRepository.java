@@ -35,6 +35,14 @@ public class UserRepository implements UserDataSource {
     }
 
     @Override
+    public void signUpUser(@NonNull UserProfile userProfile, @NonNull String password,
+                           @NonNull final SignUpUserCallBack callback) {
+        checkNotNull(callback);
+        mUserRemoteDataSource.signUpUser(userProfile, password, callback);
+
+    }
+
+    @Override
     public void loginUser(@NonNull String username, @NonNull String password) {
 
     }
