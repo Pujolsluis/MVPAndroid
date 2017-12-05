@@ -19,6 +19,7 @@ public class UserRepository implements UserDataSource {
 
     boolean mCacheIsDirty = false;
 
+
     private UserRepository (@NonNull UserDataSource userRemoteDataSource){
         mUserRemoteDataSource = checkNotNull(userRemoteDataSource);
     }
