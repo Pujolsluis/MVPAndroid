@@ -49,6 +49,8 @@ public class AuthenticationActivity extends AppCompatActivity implements LoginCo
         UserRepository userRepository = UserRepository.getInstance(UserRemoteDataSource.getInstance());
         mLoginPresenter = new LoginPresenter( userRepository, loginFragment);
 
+        signUpFragment = SignUpFragment.newInstance();
+        mSignUpPresenter = new SignUpPresenter( userRepository, signUpFragment);
 
     }
 
@@ -65,16 +67,14 @@ public class AuthenticationActivity extends AppCompatActivity implements LoginCo
 
     @Override
     public void onSignupTextViewClicked() {
-
-        signUpFragment = SignUpFragment.newInstance();
-        UserRepository userRepository = UserRepository.getInstance(UserRemoteDataSource.getInstance());
-        mSignUpPresenter = new SignUpPresenter( userRepository, signUpFragment);
-        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(), signUpFragment, R.id.mainActivity_fragment);
+        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
+                signUpFragment, R.id.mainActivity_fragment);
 
     }
 
     @Override
     public void onLoginTextViewClicked() {
-        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(), loginFragment, R.id.mainActivity_fragment);
+        ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
+                loginFragment, R.id.mainActivity_fragment);
     }
 }
