@@ -1,4 +1,4 @@
-package com.example.devs.mvplogin.autentication.login;
+package com.example.devs.mvplogin.ui.login;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,9 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,7 +39,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     @BindView(R.id.login_signup_TextView)
     TextView signupTextView;
 
-    @BindView(R.id.progressBar)
+    @BindView(R.id.login_progress_bar)
     ProgressBar progressBar;
 
     public LoginFragment() {
@@ -51,9 +48,8 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     public static LoginFragment newInstance(){
 
-        LoginFragment loginFragment = new LoginFragment();
+        return new LoginFragment();
 
-        return loginFragment;
     }
 
     @Nullable
@@ -69,7 +65,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
             if(TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
                 Toast.makeText(getContext(), "You must complete all fields", Toast.LENGTH_SHORT).show();
             }else{
-                mLoginCallback.onLoginClicked();
+                mLoginCallback.onLoginButtonClicked();
             }
             }
         });
@@ -77,7 +73,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
         signupTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            mSignupCallback.onSignupClicked();
+                mSignupCallback.onSignupTextViewClicked();
             }
         });
 
@@ -88,24 +84,6 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     @Override
     public void onAttach(Context context) {
-
-        //Get Login callback activity
-        try {
-            mLoginCallback = (onLoginButtonClickListener) context;
-        }catch (ClassCastException e){
-            throw new ClassCastException(context.toString()
-                    + " must implement onLoginButtonClickListener"
-            );
-        }
-
-        //Get Signup callback activity
-        try{
-            mSignupCallback = (onSignupClickListener) context;
-        }catch (ClassCastException e){
-            throw new ClassCastException(context.toString()
-                    + "must implement onSignupClickListener"
-            );
-        }
 
         super.onAttach(context);
     }
@@ -118,6 +96,12 @@ public class LoginFragment extends Fragment implements LoginContract.View {
         }else{
             mPresenter = presenter;
         }
+    }
+
+    @Override
+    public void onDetach() {
+
+        super.onDetach();
     }
 
     @Override

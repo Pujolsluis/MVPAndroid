@@ -35,8 +35,12 @@ public class UserRepository implements UserDataSource {
     }
 
     @Override
-    public void getUsers(@NonNull LoadUsersDataCallBack callback) {
+    public void loginUser(@NonNull String username, @NonNull String password) {
 
+    }
+
+    @Override
+    public void getUsers(@NonNull LoadUsersDataCallBack callback) {
 
 
     }

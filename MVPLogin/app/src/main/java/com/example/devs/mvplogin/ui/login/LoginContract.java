@@ -1,4 +1,4 @@
-package com.example.devs.mvplogin.autentication.login;
+package com.example.devs.mvplogin.ui.login;
 
 import com.example.devs.mvplogin.BasePresenter;
 import com.example.devs.mvplogin.BaseView;
@@ -12,11 +12,11 @@ public interface LoginContract {
     interface View extends BaseView<Presenter>{
 
         public interface onLoginButtonClickListener{
-            void onLoginClicked();
+            void onLoginButtonClicked();
         }
 
         public interface onSignupClickListener{
-            void onSignupClicked();
+            void onSignupTextViewClicked();
         }
 
         void setLoadingIndicator(boolean active);
@@ -27,7 +27,7 @@ public interface LoginContract {
 
     interface Presenter extends BasePresenter {
 
-        void login(UserProfile userProfile);
+        void login(String username, String password);
 
     }
 

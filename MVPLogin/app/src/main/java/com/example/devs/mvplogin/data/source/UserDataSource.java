@@ -26,6 +26,8 @@ public interface UserDataSource {
         void onDataNotAvailable();
     }
 
+    void loginUser(@NonNull String username, @NonNull String password);
+
     void getUsers(@NonNull LoadUsersDataCallBack callback);
 
     void getUser(@NonNull String userEmail, @NonNull GetUserCallback callback);
