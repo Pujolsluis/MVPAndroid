@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.example.devs.mvplogin.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,6 +38,7 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
 

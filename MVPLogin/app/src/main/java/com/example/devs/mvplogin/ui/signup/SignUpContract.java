@@ -25,6 +25,8 @@ public interface SignUpContract {
         void setLoadingIndicator(boolean isActive);
 
         void showSignUpError();
+
+        void showHomeActivity();
     }
 
     interface Presenter extends BasePresenter {

@@ -1,6 +1,7 @@
 package com.example.devs.mvplogin.ui.signup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
 import com.example.devs.mvplogin.data.UserProfile;
+import com.example.devs.mvplogin.ui.home.HomeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -157,5 +159,11 @@ public class SignUpFragment extends Fragment implements SignUpContract.View {
     @Override
     public void showSignUpError() {
 
+    }
+
+    @Override
+    public void showHomeActivity() {
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,12 +1,14 @@
 package com.example.devs.mvplogin.ui.signup;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.example.devs.mvplogin.data.UserProfile;
 import com.example.devs.mvplogin.data.source.UserDataSource;
 import com.example.devs.mvplogin.data.source.UserRepository;
+import com.example.devs.mvplogin.ui.home.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -50,6 +52,7 @@ public class SignUpPresenter implements SignUpContract.Presenter {
                     @Override
                     public void onUserSignedUp() {
                         mSignUpView.showSignUpMessage("User Registered! :D");
+                        mSignUpView.showHomeActivity();
                     }
 
                     @Override
