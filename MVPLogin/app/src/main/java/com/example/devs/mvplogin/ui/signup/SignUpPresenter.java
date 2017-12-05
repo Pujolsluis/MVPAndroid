@@ -1,6 +1,8 @@
 package com.example.devs.mvplogin.ui.signup;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
+import android.widget.Toast;
 
 import com.example.devs.mvplogin.data.UserProfile;
 import com.example.devs.mvplogin.data.source.UserRepository;
@@ -22,6 +24,8 @@ public class SignUpPresenter implements SignUpContract.Presenter {
                            @NonNull SignUpContract.View signUpView) {
         mUserRepository = checkNotNull(userRepository, "userRepository cannot be null!");
         mSignUpView = checkNotNull(signUpView, "signUpView cannot be null!");
+
+        mSignUpView.setPresenter(this);
     }
 
 
@@ -31,7 +35,7 @@ public class SignUpPresenter implements SignUpContract.Presenter {
     }
 
     @Override
-    public void signup(UserProfile userProfile) {
-
+    public void signup(UserProfile userProfile, String password) {
+        mSignUpView.showSignUpMessage();
     }
 }

@@ -15,11 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
+import com.example.devs.mvplogin.ui.signup.SignUpContract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.devs.mvplogin.R.layout.fragment_login;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LoginFragment extends Fragment implements LoginContract.View {
 
@@ -65,7 +67,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
             if(TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
                 Toast.makeText(getContext(), "You must complete all fields", Toast.LENGTH_SHORT).show();
             }else{
-                mLoginCallback.onLoginButtonClicked();
+                mPresenter.login(email.toString(), password.toString());
             }
             }
         });
@@ -84,18 +86,30 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     @Override
     public void onAttach(Context context) {
+        // Get Signup callback activity
+        try {
+            mSignupCallback = (LoginContract.View.onSignupClickListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString()
+                    + " must implement onSignupButtonClickListener"
+            );
+        }
 
+        // Get login callback activity
+        try {
+            mLoginCallback = (LoginContract.View.onLoginButtonClickListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString()
+                    + " must implement onLoginClickListener"
+            );
+        }
         super.onAttach(context);
     }
 
 
     @Override
     public void setPresenter(LoginContract.Presenter presenter) {
-        if(presenter != null){
-
-        }else{
-            mPresenter = presenter;
-        }
+        mPresenter = checkNotNull(presenter);
     }
 
     @Override

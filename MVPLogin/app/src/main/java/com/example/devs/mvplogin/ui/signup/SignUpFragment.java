@@ -11,13 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
+import com.example.devs.mvplogin.data.UserProfile;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.example.devs.mvplogin.R.layout.fragment_sign_up;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SignUpFragment extends Fragment implements SignUpContract.View {
 
@@ -70,6 +73,26 @@ public class SignUpFragment extends Fragment implements SignUpContract.View {
 
         ButterKnife.bind(this, rootView);
 
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(email.getText().toString().isEmpty() || firstName.getText().toString().isEmpty()
+                        || lastName.getText().toString().isEmpty() || password.getText().toString().isEmpty()
+                        || confirmPassword.getText().toString().isEmpty()){
+                    Toast.makeText(getContext(), "You must complete all fields", Toast.LENGTH_SHORT).show();
+                }else{
+                    if( !password.getText().toString().equals(confirmPassword.getText().toString())){
+                        Toast.makeText(getContext(), "Your passwords don't match", Toast.LENGTH_SHORT).show();
+                    }else{
+                        UserProfile userProfile =
+                                new UserProfile(email.getText().toString(), firstName.getText().toString(),
+                                        lastName.getText().toString()
+                                );
+                        mPresenter.signup(userProfile, password.getText().toString());
+                    }
+                }
+            }
+        });
 
         loginTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,21 +131,18 @@ public class SignUpFragment extends Fragment implements SignUpContract.View {
 
     @Override
     public void setPresenter(SignUpContract.Presenter presenter) {
-        if(presenter != null){
-
-        }else{
-            mPresenter = presenter;
-        }
+        mPresenter = checkNotNull(presenter);
     }
 
     @Override
     public void onDetach() {
 
-        mLoginCallback = null;
-        mSignupCallback = null;
-        mPresenter = null;
-
         super.onDetach();
+    }
+
+    @Override
+    public void showSignUpMessage() {
+        Toast.makeText(getContext(), "We signing up :D", Toast.LENGTH_SHORT).show();
     }
 
     @Override

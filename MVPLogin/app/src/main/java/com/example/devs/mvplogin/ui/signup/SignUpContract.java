@@ -12,6 +12,8 @@ import com.example.devs.mvplogin.ui.login.LoginContract;
 public interface SignUpContract {
 
     interface View extends BaseView<SignUpContract.Presenter> {
+        void showSignUpMessage();
+
         public interface onSignupButtonClickListener{
             void onSignupButtonClicked();
         }
@@ -27,7 +29,7 @@ public interface SignUpContract {
 
     interface Presenter extends BasePresenter {
 
-        void signup(UserProfile userProfile);
+        void signup(UserProfile userProfile, String password);
 
     }
 }

@@ -23,6 +23,8 @@ public class LoginPresenter implements LoginContract.Presenter {
                           @NonNull LoginContract.View loginView){
         mUserRepository = checkNotNull(userRepository, "userRepository cannot be null!");
         mLoginView = checkNotNull(loginView, "loginView cannot be null!");
+
+        mLoginView.setPresenter(this);
     }
 
 
