@@ -57,7 +57,24 @@ public class UserRemoteDataSource implements UserDataSource {
     }
 
     @Override
-    public void loginUser(@NonNull String username, @NonNull String password) {
+    public void loginUser(@NonNull String username, @NonNull String password,
+                          @NonNull final LoginUserCallBack callback) {
+
+        mFirebaseAuth.signInWithEmailAndPassword(username, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Task completed successfully
+                            AuthResult result = task.getResult();
+                            callback.onUserLoggedIn();
+                        } else {
+                            // Task failed with an exception
+                            Exception exception = task.getException();
+                            callback.onUserNotLoggedIn();
+                        }
+                    }
+                });
 
     }
 

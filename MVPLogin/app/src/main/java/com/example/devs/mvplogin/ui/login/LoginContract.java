@@ -11,6 +11,10 @@ import com.example.devs.mvplogin.data.UserProfile;
 public interface LoginContract {
     interface View extends BaseView<Presenter>{
 
+        void showSignUpMessage(String message);
+
+        void showHomeActivity();
+
         public interface onLoginButtonClickListener{
             void onLoginButtonClicked();
         }

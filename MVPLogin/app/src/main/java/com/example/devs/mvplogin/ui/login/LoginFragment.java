@@ -1,6 +1,7 @@
 package com.example.devs.mvplogin.ui.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.devs.mvplogin.R;
+import com.example.devs.mvplogin.ui.home.HomeActivity;
 import com.example.devs.mvplogin.ui.signup.SignUpContract;
 
 import butterknife.BindView;
@@ -67,7 +69,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
             if(TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(email.getText().toString())){
                 Toast.makeText(getContext(), "You must complete all fields", Toast.LENGTH_SHORT).show();
             }else{
-                mPresenter.login(email.toString(), password.toString());
+                mPresenter.login(email.getText().toString(), password.getText().toString());
             }
             }
         });
@@ -116,6 +118,18 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     public void onDetach() {
 
         super.onDetach();
+    }
+
+    @Override
+    public void showSignUpMessage(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showHomeActivity() {
+        Intent intent = new Intent(getContext(), HomeActivity.class);
+        startActivity(intent);
+
     }
 
     @Override

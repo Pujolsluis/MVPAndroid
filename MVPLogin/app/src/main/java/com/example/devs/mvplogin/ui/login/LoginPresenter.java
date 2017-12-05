@@ -3,6 +3,7 @@ package com.example.devs.mvplogin.ui.login;
 import android.support.annotation.NonNull;
 
 import com.example.devs.mvplogin.data.UserProfile;
+import com.example.devs.mvplogin.data.source.UserDataSource;
 import com.example.devs.mvplogin.data.source.UserRepository;
 
 
@@ -36,7 +37,18 @@ public class LoginPresenter implements LoginContract.Presenter {
 
 
     public void login(String username, String password) {
+        mUserRepository.loginUser(username, password, new UserDataSource.LoginUserCallBack() {
+            @Override
+            public void onUserLoggedIn() {
+                mLoginView.showSignUpMessage("User Logged In! :D");
+                mLoginView.showHomeActivity();
+            }
 
+            @Override
+            public void onUserNotLoggedIn() {
+                mLoginView.showSignUpMessage("User not Logged In! :(");
+            }
+        });
     }
 
 }

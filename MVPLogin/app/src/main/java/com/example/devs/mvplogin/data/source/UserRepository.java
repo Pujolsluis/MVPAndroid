@@ -43,7 +43,10 @@ public class UserRepository implements UserDataSource {
     }
 
     @Override
-    public void loginUser(@NonNull String username, @NonNull String password) {
+    public void loginUser(@NonNull String username, @NonNull String password,
+                          @NonNull final LoginUserCallBack callback) {
+        checkNotNull(callback);
+        mUserRemoteDataSource.loginUser(username, password, callback);
 
     }
 

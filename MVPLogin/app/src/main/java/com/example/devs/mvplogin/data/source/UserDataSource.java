@@ -32,10 +32,17 @@ public interface UserDataSource {
         void onUserNotSignedUp();
     }
 
+    interface LoginUserCallBack{
+        void onUserLoggedIn();
+
+        void onUserNotLoggedIn();
+    }
+
     void signUpUser(@NonNull UserProfile userProfile, @NonNull String password,
                     @NonNull SignUpUserCallBack callBack);
 
-    void loginUser(@NonNull String username, @NonNull String password);
+    void loginUser(@NonNull String username, @NonNull String password,
+                   @NonNull LoginUserCallBack callback);
 
     void getUsers(@NonNull LoadUsersDataCallBack callback);
 
