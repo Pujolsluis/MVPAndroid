@@ -11,10 +11,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 /**
  * Created by devs on 8/25/17.
  */
 
+@Singleton
 public class UserRemoteDataSource implements UserDataSource {
 
     private static UserRemoteDataSource INSTANCE;
@@ -23,17 +27,13 @@ public class UserRemoteDataSource implements UserDataSource {
     private DatabaseReference mDatabaseReference;
     private FirebaseAuth mFirebaseAuth;
 
-    public static UserDataSource getInstance(){
-        if (INSTANCE == null){
-            INSTANCE = new UserRemoteDataSource();
-            INSTANCE.mFirebaseDatabase = FirebaseDatabase.getInstance();
-            INSTANCE.mDatabaseReference = INSTANCE.mFirebaseDatabase.getReference("user_profiles");
-            INSTANCE.mFirebaseAuth = FirebaseAuth.getInstance();
-        }
-        return INSTANCE;
-    }
 
-    private UserRemoteDataSource(){}
+    @Inject
+    UserRemoteDataSource(){
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mDatabaseReference = mFirebaseDatabase.getReference("user_profiles");
+        mFirebaseAuth = FirebaseAuth.getInstance();
+    }
 
     @Override
     public void signUpUser(@NonNull UserProfile userProfile, @NonNull String password,

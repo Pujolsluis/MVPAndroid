@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.example.devs.mvplogin.data.UserProfile;
 
+import javax.inject.Inject;
+
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -20,15 +22,9 @@ public class UserRepository implements UserDataSource {
     boolean mCacheIsDirty = false;
 
 
-    private UserRepository (@NonNull UserDataSource userRemoteDataSource){
+    @Inject
+    UserRepository (@Remote UserDataSource userRemoteDataSource){
         mUserRemoteDataSource = checkNotNull(userRemoteDataSource);
-    }
-
-    public static UserRepository getInstance(UserDataSource userRemoteDataSource){
-        if(INSTANCE == null){
-            INSTANCE = new UserRepository(userRemoteDataSource);
-        }
-        return INSTANCE;
     }
 
     public static void destroyInstance(){

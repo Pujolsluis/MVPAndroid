@@ -19,6 +19,8 @@ import com.example.devs.mvplogin.R;
 import com.example.devs.mvplogin.ui.home.HomeActivity;
 import com.example.devs.mvplogin.ui.signup.SignUpContract;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -27,7 +29,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class LoginFragment extends Fragment implements LoginContract.View {
 
+    @Inject
     LoginContract.Presenter mPresenter;
+
     onLoginButtonClickListener mLoginCallback;
     onSignupClickListener mSignupCallback;
 
@@ -48,12 +52,6 @@ public class LoginFragment extends Fragment implements LoginContract.View {
 
     public LoginFragment() {
         // Required empty public constructor
-    }
-
-    public static LoginFragment newInstance(){
-
-        return new LoginFragment();
-
     }
 
     @Nullable
@@ -108,16 +106,23 @@ public class LoginFragment extends Fragment implements LoginContract.View {
         super.onAttach(context);
     }
 
-
     @Override
-    public void setPresenter(LoginContract.Presenter presenter) {
-        mPresenter = checkNotNull(presenter);
+    public void onDetach() {
+        mSignupCallback = null;
+        mLoginCallback = null;
+        super.onDetach();
     }
 
     @Override
-    public void onDetach() {
+    public void onResume() {
+        mPresenter.takeView(this);
+        super.onResume();
+    }
 
-        super.onDetach();
+    @Override
+    public void onDestroy() {
+        mPresenter.dropView();
+        super.onDestroy();
     }
 
     @Override

@@ -29,7 +29,7 @@ public interface LoginContract {
 
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter extends BasePresenter<View> {
 
         void login(String username, String password);
 

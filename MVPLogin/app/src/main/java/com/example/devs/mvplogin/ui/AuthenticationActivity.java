@@ -16,17 +16,27 @@ import com.example.devs.mvplogin.ui.signup.SignUpFragment;
 import com.example.devs.mvplogin.ui.signup.SignUpPresenter;
 import com.example.devs.mvplogin.util.ActivityUtils;
 
+import javax.inject.Inject;
+
+import dagger.Lazy;
+
 public class AuthenticationActivity extends AppCompatActivity implements LoginContract.View.onLoginButtonClickListener, LoginContract.View.onSignupClickListener
         , SignUpContract.View.onSignupButtonClickListener, SignUpContract.View.onLoginClickListener {
 
     private static final String loginFragmentName = "LoginFragment";
 
+
+    @Inject
     LoginPresenter mLoginPresenter;
+
+    @Inject
     SignUpPresenter mSignUpPresenter;
 
-    LoginFragment loginFragment;
+    @Inject
+    LoginFragment loginFragmentProvider;
 
-    SignUpFragment signUpFragment;
+    @Inject
+    SignUpFragment signUpFragmentProvider;
 
 
     @Override
@@ -34,23 +44,24 @@ public class AuthenticationActivity extends AppCompatActivity implements LoginCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginFragment = (LoginFragment) getSupportFragmentManager()
+        LoginFragment loginFragment = (LoginFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mainActivity_fragment);
 
         if(loginFragment == null){
 
-            loginFragment = LoginFragment.newInstance();
+            loginFragment = loginFragmentProvider;
 
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(),
                     loginFragment, R.id.mainActivity_fragment);
 
         }
 
-        UserRepository userRepository = UserRepository.getInstance(UserRemoteDataSource.getInstance());
-        mLoginPresenter = new LoginPresenter( userRepository, loginFragment);
-
-        signUpFragment = SignUpFragment.newInstance();
-        mSignUpPresenter = new SignUpPresenter( userRepository, signUpFragment);
+        // Load previously saved state, if available.
+        if (savedInstanceState != null) {
+//            TasksFilterType currentFiltering =
+//                    (TasksFilterType) savedInstanceState.getSerializable(CURRENT_FILTERING_KEY);
+//            mTasksPresenter.setFiltering(currentFiltering);
+        }
 
     }
 
@@ -67,6 +78,9 @@ public class AuthenticationActivity extends AppCompatActivity implements LoginCo
 
     @Override
     public void onSignupTextViewClicked() {
+
+        SignUpFragment signUpFragment = signUpFragmentProvider;
+
         ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
                 signUpFragment, R.id.mainActivity_fragment);
 
@@ -74,6 +88,9 @@ public class AuthenticationActivity extends AppCompatActivity implements LoginCo
 
     @Override
     public void onLoginTextViewClicked() {
+
+        LoginFragment loginFragment = loginFragmentProvider;
+
         ActivityUtils.replaceFragmentInActivity(getSupportFragmentManager(),
                 loginFragment, R.id.mainActivity_fragment);
     }

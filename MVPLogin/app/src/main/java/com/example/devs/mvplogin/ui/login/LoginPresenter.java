@@ -1,11 +1,15 @@
 package com.example.devs.mvplogin.ui.login;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.example.devs.mvplogin.data.UserProfile;
 import com.example.devs.mvplogin.data.source.UserDataSource;
 import com.example.devs.mvplogin.data.source.UserRepository;
+import com.example.devs.mvplogin.di.ActivityScoped;
 
+
+import javax.inject.Inject;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -13,19 +17,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
  * Created by devs on 9/15/17.
  */
 
+@ActivityScoped
 public class LoginPresenter implements LoginContract.Presenter {
 
     private final UserRepository mUserRepository;
 
-    private final LoginContract.View mLoginView;
+    @Nullable
+    private LoginContract.View mLoginView;
 
 
-    public LoginPresenter(@NonNull UserRepository userRepository,
-                          @NonNull LoginContract.View loginView){
+    @Inject
+    public LoginPresenter(UserRepository userRepository){
         mUserRepository = checkNotNull(userRepository, "userRepository cannot be null!");
-        mLoginView = checkNotNull(loginView, "loginView cannot be null!");
-
-        mLoginView.setPresenter(this);
     }
 
 
@@ -33,6 +36,16 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void start() {
 
+    }
+
+    @Override
+    public void takeView(LoginContract.View view) {
+        this.mLoginView = view;
+    }
+
+    @Override
+    public void dropView() {
+        this.mLoginView = null;
     }
 
 

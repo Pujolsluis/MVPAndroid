@@ -1,16 +1,17 @@
-package com.example.devs.mvplogin.di.Application;
+package com.example.devs.mvplogin.di;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import javax.inject.Scope;
 
 /**
- * Created by Usuario on 12/5/2017.
+ * Created by Usuario on 12/6/2017.
  */
 
-
+@Documented
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ApplicationScope {
+public @interface ActivityScoped {
 }

@@ -1,35 +1,28 @@
 package com.example.devs.mvplogin;
 
-import android.app.Application;
-import android.support.annotation.UiThread;
 
-import com.example.devs.mvplogin.di.Application.ApplicationComponent;
-import com.example.devs.mvplogin.di.Application.ApplicationModule;
-import com.example.devs.mvplogin.di.Application.DaggerApplicationComponent;
+import com.example.devs.mvplogin.data.source.UserRepository;
+import com.example.devs.mvplogin.di.DaggerAppComponent;
 
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
 
 /**
  * Created by Usuario on 12/5/2017.
  */
 
-public class LoginMVPApplication extends Application {
-    private ApplicationComponent mApplicationComponent;
+public class LoginMVPApplication extends DaggerApplication {
 
+    @Inject
+    UserRepository mUserRepository;
 
     @Override
-    public void onCreate() {
-        getApplicationComponent().inject(this);
-        super.onCreate();
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerAppComponent.builder().application(this).build();
     }
 
-    @UiThread
-    public ApplicationComponent getApplicationComponent(){
-        if(mApplicationComponent == null){
-            mApplicationComponent = DaggerApplicationComponent.builder()
-                    .applicationModule(new ApplicationModule(this))
-                    .build();
-        }
-        return mApplicationComponent;
-    }
+
 }
