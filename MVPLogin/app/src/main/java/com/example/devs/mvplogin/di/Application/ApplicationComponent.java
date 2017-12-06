@@ -1,5 +1,7 @@
 package com.example.devs.mvplogin.di.Application;
 
+import com.example.devs.mvplogin.LoginMVPApplication;
+
 import dagger.Component;
 
 /**
@@ -14,5 +16,6 @@ import dagger.Component;
         }
 )
 public interface ApplicationComponent {
+        public void inject(LoginMVPApplication loginMVPApplication);
 
 }

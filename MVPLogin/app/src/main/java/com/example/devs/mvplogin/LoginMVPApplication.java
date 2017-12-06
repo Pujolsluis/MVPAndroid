@@ -16,8 +16,15 @@ import dagger.android.DaggerApplication;
 public class LoginMVPApplication extends Application {
     private ApplicationComponent mApplicationComponent;
 
+
+    @Override
+    public void onCreate() {
+        getApplicationComponent().inject(this);
+        super.onCreate();
+    }
+
     @UiThread
-    public ApplicationComponent applicationComponent(){
+    public ApplicationComponent getApplicationComponent(){
         if(mApplicationComponent == null){
             mApplicationComponent = DaggerApplicationComponent.builder()
                     .applicationModule(new ApplicationModule(this))
