@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.devs.mvplogin.LoginMVPApplication;
 import com.example.devs.mvplogin.data.source.UserRepository;
 import com.example.devs.mvplogin.data.source.UserRepositoryModule;
+import com.example.devs.mvplogin.ui.AuthenticationActivityModule;
 
 import javax.inject.Singleton;
 
@@ -21,6 +22,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {
         UserRepositoryModule.class,
         ApplicationModule.class,
+        ActivityBindingModule.class,
         AndroidSupportInjectionModule.class
 })
 public interface AppComponent extends AndroidInjector<LoginMVPApplication> {

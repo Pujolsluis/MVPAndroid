@@ -23,11 +23,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.DaggerFragment;
 
 import static com.example.devs.mvplogin.R.layout.fragment_login;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class LoginFragment extends Fragment implements LoginContract.View {
+public class LoginFragment extends dagger.android.support.DaggerFragment implements LoginContract.View {
 
     @Inject
     LoginContract.Presenter mPresenter;
@@ -50,6 +51,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     @BindView(R.id.login_progress_bar)
     ProgressBar progressBar;
 
+    @Inject
     public LoginFragment() {
         // Required empty public constructor
     }

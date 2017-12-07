@@ -22,11 +22,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.DaggerFragment;
 
 import static com.example.devs.mvplogin.R.layout.fragment_sign_up;
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class SignUpFragment extends Fragment implements SignUpContract.View {
+public class SignUpFragment extends dagger.android.support.DaggerFragment implements SignUpContract.View {
 
     @Inject
     SignUpContract.Presenter mPresenter;
@@ -59,6 +60,7 @@ public class SignUpFragment extends Fragment implements SignUpContract.View {
     ProgressBar signupProgressBar;
 
 
+    @Inject
     public SignUpFragment(){
         //Required empty public constructor
     }

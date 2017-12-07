@@ -31,6 +31,7 @@ public class SignUpPresenter implements SignUpContract.Presenter {
     @Nullable
     private SignUpContract.View mSignUpView;
 
+    @Inject
     public SignUpPresenter(UserRepository userRepository) {
         mUserRepository = checkNotNull(userRepository, "userRepository cannot be null!");
     }

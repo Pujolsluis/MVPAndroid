@@ -17,8 +17,9 @@ import com.example.devs.mvplogin.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.android.support.DaggerAppCompatActivity;
 
-public class HomeActivity extends AppCompatActivity
+public class HomeActivity extends DaggerAppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.toolbar)
